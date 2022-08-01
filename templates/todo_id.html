@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Details</title>
+    <style>
+        table, th, tr, td {border: 1px solid black;margin-left:auto;margin-right:auto;}
+        body {text-align: center;}
+
+    </style>
+</head>
+<body>
+<h2> Tasks Updates: </h2>
+<form method="POST" action="/todos/{{ todo_id }}/">
+    {{ form.hidden_tag() }}
+    <table>
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <tr>
+            <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+            <td>{{ field }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="Go">
+</form>
+</body>
+</html>
